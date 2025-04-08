@@ -1,5 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Activities from './components/Activities';
+import Leaderboard from './components/Leaderboard';
+import Teams from './components/Teams';
+import Users from './components/Users';
+import Workouts from './components/Workouts';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -35,11 +41,11 @@ function App() {
         </nav>
         <div className="mt-4">
           <Routes>
-            <Route path="/activities" element={<h1>Activities</h1>} />
-            <Route path="/leaderboard" element={<h1>Leaderboard</h1>} />
-            <Route path="/teams" element={<h1>Teams</h1>} />
-            <Route path="/users" element={<h1>Users</h1>} />
-            <Route path="/workouts" element={<h1>Workouts</h1>} />
+            <Route path="/activities" element={<Activities />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/workouts" element={<Workouts />} />
             <Route path="/" element={<h1>Welcome to OctoFit Tracker</h1>} />
           </Routes>
         </div>

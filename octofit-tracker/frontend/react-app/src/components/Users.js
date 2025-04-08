@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Users() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://scaling-giggle-qv6grx7p76p39jgp-8000.app.github.dev/api/users/')
+      .then(response => response.json())
+      .then(data => setUsers(data))
+      .catch(error => console.error('Error fetching users:', error));
+  }, []);
+
   return (
     <div className="card">
       <div className="card-header">
@@ -15,10 +24,12 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>JaneDoe</td>
-              <td>jane.doe@example.com</td>
-            </tr>
+            {users.map(user => (
+              <tr key={user.id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

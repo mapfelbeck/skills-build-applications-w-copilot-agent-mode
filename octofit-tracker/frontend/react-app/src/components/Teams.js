@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Teams() {
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    fetch('https://scaling-giggle-qv6grx7p76p39jgp-8000.app.github.dev/api/teams/')
+      .then(response => response.json())
+      .then(data => setTeams(data))
+      .catch(error => console.error('Error fetching teams:', error));
+  }, []);
+
   return (
     <div className="card">
       <div className="card-header">
@@ -15,10 +24,12 @@ function Teams() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Blue Team</td>
-              <td>5</td>
-            </tr>
+            {teams.map(team => (
+              <tr key={team.id}>
+                <td>{team.name}</td>
+                <td>{team.members}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
